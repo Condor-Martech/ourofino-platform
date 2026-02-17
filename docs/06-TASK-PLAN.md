@@ -23,10 +23,10 @@ Roadmap agressivo para entrega do MVP em 2 meses, com paralelismo entre Frontend
 ## Detalhamento Semanal
 
 ### Semana 1: Setup & Validação de Riscos
-- [ ] [OPS] Configurar repositório Monorepo.
-- [ ] [OPS] Pipeline CI/CD Hello World (Vercel).
-- [ ] [BE-POC] Implementar e validar endpoint de travamento de slots (Redis).
-- [ ] [BE-POC] Gerar e validar assinatura de QR Code (JWT Offline).
+- [x] [OPS] Configurar repositório Monorepo.
+- [x] [OPS] Pipeline CI/CD Hello World (Vercel).
+- [x] [BE-POC] Implementar e validar endpoint de travamento de slots (Redis).
+- [x] [BE-POC] Gerar e validar assinatura de QR Code (JWT Offline).
 
 ### Semana 2: Backend Core (Payload CMS)
 - [ ] [BE] Configurar Payload CMS + PostgreSQL.
