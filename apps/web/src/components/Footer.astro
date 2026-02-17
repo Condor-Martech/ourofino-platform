@@ -1,0 +1,21 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t py-6 md:py-0">
+  <div class="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
+    <div class="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-6 md:px-0">
+      <p class="text-center text-sm leading-loose text-muted-foreground md:text-left">
+        &copy; {year} Ouro Fino. Todos os direitos reservados.
+      </p>
+      <p class="text-center text-xs text-muted-foreground md:text-left">
+        Estrada Ouro Fino, s/n - Bateias, Campo Largo - PR <br class="md:hidden"/>
+        CNPJ: 76.492.305/0001-20
+      </p>
+    </div>
+    <div class="flex gap-4">
+       <!-- Social placeholders -->
+       <span class="text-xs text-muted-foreground">Seg a Sex: 9:00 - 18:00</span>
+    </div>
+  </div>
+</footer>

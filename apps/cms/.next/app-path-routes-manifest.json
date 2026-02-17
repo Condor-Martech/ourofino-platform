@@ -1,1 +1,9 @@
-{"/_not-found/page":"/_not-found","/(payload)/page":"/","/(payload)/[...slug]/page":"/[...slug]"}
+{
+  "/(payload)/admin/[[...segments]]/page": "/admin/[[...segments]]",
+  "/(payload)/api/[...slug]/route": "/api/[...slug]",
+  "/(payload)/graphql/route": "/graphql",
+  "/(payload)/page": "/",
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/page": "/"
+}

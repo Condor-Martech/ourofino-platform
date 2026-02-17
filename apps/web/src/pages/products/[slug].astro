@@ -1,0 +1,135 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { addCartItem } from '../../stores/cart';
+// import { getPayloadData } from '../../lib/payload'; // Uncomment when API is ready
+
+export function getStaticPaths() {
+  // This would ideally fetch all product slugs from Payload
+  return [
+    { params: { slug: 'agua-mineral-com-gas-510ml' } },
+    { params: { slug: 'agua-mineral-sem-gas-510ml' } },
+    { params: { slug: 'agua-mineral-gourmet-300ml' } },
+    { params: { slug: 'garrafao-20l' } },
+  ];
+}
+
+const { slug } = Astro.params;
+
+// Mock data fetching based on slug
+const mockProducts = {
+  'agua-mineral-com-gas-510ml': {
+    id: '1',
+    title: 'Água Mineral Com Gás 510ml',
+    price: 3.50,
+    description: 'Refrescante e leve, nossa água com gás é perfeita para acompanhar suas refeições ou para se hidratar com um toque especial. Captada diretamente da fonte em Bateias.',
+    image: 'https://images.unsplash.com/photo-1623000850268-ad2d4ec7e83c?q=80&w=2874&auto=format&fit=crop',
+    features: ['pH 7.4', 'Baixo Sódio', 'Gás Natural']
+  },
+  'agua-mineral-sem-gas-510ml': {
+    id: '2',
+    title: 'Água Mineral Sem Gás 510ml',
+    price: 3.00,
+    description: 'Pura e cristalina, a água mineral sem gás Ouro Fino é ideal para o consumo diário. Leveza e saúde em cada gole, direto da natureza para você.',
+    image: 'https://images.unsplash.com/photo-1548839140-29a749e1cf4d?q=80&w=2788&auto=format&fit=crop',
+    features: ['pH 7.4', 'Baixo Sódio', 'Fonte Protegida']
+  },
+  'agua-mineral-gourmet-300ml': {
+    id: '3',
+    title: 'Água Mineral Gourmet 300ml',
+    price: 8.90,
+    description: 'Nossa linha Gourmet traz sofisticação e design para os momentos mais especiais. Uma garrafa elegante que preserva as características únicas da nossa água.',
+    image: 'https://images.unsplash.com/photo-1602143407151-011141959309?q=80&w=2788&auto=format&fit=crop',
+    features: ['Design Premium', 'Vidro Reciclável', 'Edição Limitada']
+  },
+  'garrafao-20l': {
+    id: '4',
+    title: 'Garrafão 20L',
+    price: 18.00,
+    description: 'Economia e praticidade para sua família ou empresa. O garrafão de 20L garante água de qualidade sempre disponível.',
+    image: 'https://images.unsplash.com/photo-1562089228-5ae0041fc847?q=80&w=2938&auto=format&fit=crop',
+    features: ['Retornável', 'Econômico', 'Alça Ergonômica']
+  }
+};
+
+const product = mockProducts[slug as keyof typeof mockProducts];
+
+if (!product) {
+  return Astro.redirect('/404');
+}
+---
+
+<Layout title={`${product.title} - Ouro Fino`}>
+  <div class="bg-background py-16">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
+        {/* Product Image */}
+        <div class="overflow-hidden rounded-xl bg-muted">
+          <img
+            src={product.image}
+            alt={product.title}
+            class="h-full w-full object-cover object-center transition-transform duration-500 hover:scale-105"
+            transition:name={`image-${product.id}`}
+          />
+        </div>
+
+        {/* Product Details */}
+        <div class="flex flex-col justify-center">
+          <h1 class="text-3xl font-bold tracking-tight text-foreground md:text-5xl">{product.title}</h1>
+          <div class="mt-4">
+            <p class="text-2xl font-semibold text-primary">
+              {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(product.price)}
+            </p>
+          </div>
+
+          <div class="mt-8 space-y-6">
+            <p class="text-lg text-muted-foreground leading-relaxed">
+              {product.description}
+            </p>
+
+            {/* Features List */}
+            <ul class="space-y-2">
+              {product.features.map((feature) => (
+                <li class="flex items-center gap-2 text-foreground">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-500"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  {feature}
+                </li>
+              ))}
+            </ul>
+
+            <div class="mt-10 flex gap-4">
+               {/* Client-side add to cart button wrapper would go here, using inline script for simplicity in Astro mainly-static page */}
+               <button
+                  id="add-to-cart-btn"
+                  data-product={JSON.stringify(product)}
+                  class="flex-1 items-center justify-center rounded-md bg-primary px-8 py-4 text-base font-bold text-primary-foreground transition-colors hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                >
+                  Adicionar ao Carrinho
+                </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    import { addCartItem } from '../../stores/cart';
+    // Remove isCartOpen import if not used or exported
+    // import { isCartOpen } from '../../stores/cart'; 
+
+    const btn = document.getElementById('add-to-cart-btn');
+    if (btn) {
+      btn.addEventListener('click', () => {
+        const productData = JSON.parse(btn.dataset.product || '{}');
+        addCartItem({
+          id: productData.id,
+          name: productData.title,
+          price: productData.price,
+          imageSrc: productData.image,
+        });
+        
+        alert('Produto adicionado ao carrinho! (Flyout abrirá na versão final)'); 
+      });
+    }
+  </script>
+</Layout>

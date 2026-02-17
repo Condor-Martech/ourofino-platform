@@ -1,8 +1,23 @@
-import React from 'react';
-import { RootPage } from '@payloadcms/next/views';
-import config from '@/payload.config';
-import { importMap } from '@/app/(payload)/admin/importMap';
+/* THIS FILE WAS GENERATED AUTOMATICALLY BY PAYLOAD. */
+import type { Metadata } from 'next'
 
-export default function Page({ params, searchParams }: { params: any; searchParams: any }) {
-  return <RootPage config={Promise.resolve(config)} importMap={importMap} params={params} searchParams={searchParams} />;
+import config from '@/payload.config'
+import { RootPage, generatePageMetadata } from '@payloadcms/next/views'
+import { importMap } from '@/app/(payload)/admin/importMap'
+
+type Args = {
+  params: Promise<{
+    segments: string[]
+  }>
+  searchParams: Promise<{
+    [key: string]: string | string[]
+  }>
 }
+
+export const generateMetadata = async ({ params, searchParams }: Args): Promise<Metadata> =>
+  generatePageMetadata({ config, params, searchParams })
+
+const Page = async ({ params, searchParams }: Args) =>
+  RootPage({ config, importMap, params, searchParams })
+
+export default Page

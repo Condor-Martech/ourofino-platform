@@ -1,0 +1,111 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { ProductCard } from '../../components/Shop/ProductCard';
+import { getPayloadData } from '../../lib/payload';
+
+interface Product {
+  id: string;
+  title: string;
+  slug: string;
+  price?: number;
+  meta?: {
+    image?: {
+      url: string;
+      alt: string;
+    };
+  };
+}
+
+// Fetch products from Payload
+const productsData = await getPayloadData('products');
+const products: Product[] = productsData?.docs || [];
+
+// Mock products if API fails or is empty (for development)
+const mockProducts = [
+  {
+    id: '1',
+    title: 'Água Mineral Com Gás 510ml',
+    slug: 'agua-mineral-com-gas-510ml',
+    price: 3.50,
+    meta: {
+      image: {
+        url: 'https://images.unsplash.com/photo-1623000850268-ad2d4ec7e83c?q=80&w=2874&auto=format&fit=crop',
+        alt: 'Garrafa de água com gás'
+      }
+    }
+  },
+  {
+    id: '2',
+    title: 'Água Mineral Sem Gás 510ml',
+    slug: 'agua-mineral-sem-gas-510ml',
+    price: 3.00,
+    meta: {
+      image: {
+        url: 'https://images.unsplash.com/photo-1548839140-29a749e1cf4d?q=80&w=2788&auto=format&fit=crop',
+        alt: 'Garrafa de água sem gás'
+      }
+    }
+  },
+  {
+    id: '3',
+    title: 'Água Mineral Gourmet 300ml',
+    slug: 'agua-mineral-gourmet-300ml',
+    price: 8.90,
+    meta: {
+      image: {
+        url: 'https://images.unsplash.com/photo-1602143407151-011141959309?q=80&w=2788&auto=format&fit=crop',
+        alt: 'Garrafa de água gourmet'
+      }
+    }
+  },
+   {
+    id: '4',
+    title: 'Garrafão 20L',
+    slug: 'garrafao-20l',
+    price: 18.00,
+    meta: {
+      image: {
+        url: 'https://images.unsplash.com/photo-1562089228-5ae0041fc847?q=80&w=2938&auto=format&fit=crop', // Placeholder for large bottle
+        alt: 'Garrafão de água 20L'
+      }
+    }
+  }
+];
+
+const displayProducts = products.length > 0 ? products : mockProducts;
+---
+
+<Layout title="Nossos Produtos - Ouro Fino">
+  <div class="bg-muted/50">
+    <div class="container mx-auto px-4 py-12">
+      <div class="mb-8 flex flex-col items-start gap-4 md:flex-row md:items-center md:justify-between">
+        <div>
+          <h1 class="text-3xl font-bold tracking-tight text-foreground">Loja Virtual</h1>
+          <p class="text-muted-foreground">Leve a pureza da Ouro Fino para sua casa.</p>
+        </div>
+        <div class="flex items-center gap-2">
+           {/* Filters placeholders */}
+           <select class="h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
+             <option>Todas as Categorias</option>
+             <option>Com Gás</option>
+             <option>Sem Gás</option>
+             <option>Gourmet</option>
+           </select>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {displayProducts.map((product) => (
+          <ProductCard
+            client:load
+            id={product.id}
+            name={product.title}
+            price={product.price || 0}
+            imageSrc={product.meta?.image?.url || 'https://via.placeholder.com/300'}
+            slug={product.slug}
+          />
+        ))}
+      </div>
+    </div>
+  </div>
+</Layout>

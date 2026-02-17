@@ -1,0 +1,179 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AddToCartButton from '../../components/cart/AddToCartButton';
+
+export function getStaticPaths() {
+  // MOCK DATA for static paths
+  const products = [
+    {
+        id: '1',
+        title: 'Vinho Tinto Ouro Fino Reserva',
+        price: 89.90,
+        image: 'https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+        slug: 'vinho-tinto-ouro-fino-reserva',
+        description: 'Um vinho tinto encorpado, com notas de frutas vermelhas e carvalho. Perfeito para acompanhar carnes vermelhas e queijos curados.',
+        details: [
+            { label: 'Safra', value: '2023' },
+            { label: 'Uva', value: 'Cabernet Sauvignon' },
+            { label: 'Teor Alcoólico', value: '13.5%' }
+        ]
+    },
+    {
+        id: '2',
+        title: 'Azeite de Oliva Extra Virgem',
+        price: 45.00,
+        image: 'https://images.unsplash.com/photo-1474979266404-7eaacbcdccef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+        slug: 'azeite-de-oliva-extra-virgem',
+        description: 'Azeite de oliva extra virgem de primeira prensagem a frio. Acidez máxima de 0,2%.',
+        details: [
+            { label: 'Origem', value: 'Ouro Fino - MG' },
+            { label: 'Acidez', value: '0.2%' },
+            { label: 'Volume', value: '500ml' }
+        ]
+    },
+    {
+        id: '3',
+        title: 'Kit Degustação Queijos',
+        price: 120.00,
+        image: 'https://images.unsplash.com/photo-1452195100486-9cc805987862?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+        slug: 'kit-degustacao-queijos',
+        description: 'Seleção especial de 4 tipos de queijos artesanais produzidos na fazenda.',
+        details: [
+            { label: 'Tipos', value: 'Minas Padrão, Canastra, Parmesão, Brie' },
+            { label: 'Peso Total', value: '1.2kg' }
+        ]
+    },
+    {
+      id: '4',
+      title: 'Mel Orgânico Silvestre',
+      price: 35.50,
+      image: 'https://images.unsplash.com/photo-1587049352846-4a222e784d38?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      slug: 'mel-organico-silvestre',
+      description: 'Mel puro e orgânico de flores silvestres. Sabor suave e cristalização natural.',
+        details: [
+            { label: 'Florada', value: 'Silvestre' },
+            { label: 'Peso', value: '300g' }
+        ]
+    },
+    {
+      id: '5',
+      title: 'Cachaça Artesanal Envelhecida',
+      price: 65.00,
+      image: 'https://images.unsplash.com/photo-1569529465841-dfecdab7503b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      slug: 'cachaca-artesanal-envelhecida',
+      description: 'Cachaça envelhecida por 2 anos em barris de carvalho. Sabor amadeirado e macio.',
+        details: [
+            { label: 'Envelhecimento', value: '2 anos' },
+            { label: 'Madeira', value: 'Carvalho' },
+            { label: 'Volume', value: '700ml' }
+        ]
+    },
+    {
+      id: '6',
+      title: 'Geleia de Frutas Vermelhas',
+      price: 22.90,
+      image: 'https://images.unsplash.com/photo-1579737976691-1ec851a7051f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      slug: 'geleia-frutas-vermelhas',
+      description: 'Geleia caseira feita com morango, amora e framboesa. Sem conservantes.',
+        details: [
+            { label: 'Frutas', value: 'Morango, Amora, Framboesa' },
+            { label: 'Peso', value: '250g' }
+        ]
+    }
+  ];
+
+  return products.map((product) => ({
+    params: { slug: product.slug },
+    props: { product },
+  }));
+}
+
+const { product } = Astro.props;
+---
+
+<Layout title={`${product.title} - Ouro Fino`}>
+  <div class="container mx-auto px-4 py-8">
+    <nav class="flex text-sm text-gray-500 mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-foreground">Home</a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <a href="/shop" class="hover:text-foreground">Loja</a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <span class="text-gray-900 font-medium">{product.title}</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <!-- Image Gallery -->
+      <div class="space-y-4">
+        <div class="aspect-square overflow-hidden rounded-lg bg-gray-100 border">
+          <img
+            src={product.image}
+            alt={product.title}
+            class="h-full w-full object-cover object-center"
+          />
+        </div>
+        <div class="grid grid-cols-4 gap-4">
+            <!-- Placeholder for gallery thumbnails -->
+            {[1, 2, 3].map((i) => (
+                <div class="aspect-square bg-gray-100 rounded-md overflow-hidden opacity-50 hover:opacity-100 cursor-pointer border">
+                     <img src={product.image} class="w-full h-full object-cover" />
+                </div>
+            ))}
+        </div>
+      </div>
+
+      <!-- Product Info -->
+      <div class="flex flex-col">
+        <h1 class="text-3xl font-bold font-serif text-foreground mb-4">{product.title}</h1>
+        
+        <p class="text-2xl font-bold text-foreground mb-6">
+          {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(product.price)}
+        </p>
+
+        <div class="prose prose-sm text-gray-600 mb-8">
+          <p>{product.description}</p>
+        </div>
+
+        {product.details && (
+            <div class="mb-8 border-t border-b py-4">
+                <h3 class="font-medium mb-3">Detalhes</h3>
+                <dl class="grid grid-cols-1 gap-x-4 gap-y-4 sm:grid-cols-2">
+                    {product.details.map((detail) => (
+                        <div class="border-t border-gray-100 pt-2 sm:border-t-0 sm:pt-0">
+                            <dt class="font-medium text-gray-900">{detail.label}</dt>
+                            <dd class="mt-1 text-sm text-gray-500">{detail.value}</dd>
+                        </div>
+                    ))}
+                </dl>
+            </div>
+        )}
+
+        <div class="mt-auto">
+          <AddToCartButton 
+            client:visible 
+            product={product} 
+            className="w-full bg-black text-white py-4 rounded-full font-bold text-lg hover:scale-[1.02] active:scale-[0.98] transition shadow-lg" 
+          />
+          <p class="text-xs text-gray-500 text-center mt-4">
+            Entrega calculada no checkout. Garantia de satisfação de 30 dias.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

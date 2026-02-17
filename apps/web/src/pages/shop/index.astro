@@ -1,0 +1,112 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ProductCard from '../../components/products/ProductCard.astro';
+
+// MOCK DATA
+const products = [
+  {
+    id: '1',
+    title: 'Vinho Tinto Ouro Fino Reserva',
+    price: 89.90,
+    image: 'https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    slug: 'vinho-tinto-ouro-fino-reserva',
+    category: 'Vinhos'
+  },
+  {
+    id: '2',
+    title: 'Azeite de Oliva Extra Virgem',
+    price: 45.00,
+    image: 'https://images.unsplash.com/photo-1474979266404-7eaacbcdccef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    slug: 'azeite-de-oliva-extra-virgem',
+    category: 'Mercearia'
+  },
+  {
+    id: '3',
+    title: 'Kit Degustação Queijos',
+    price: 120.00,
+    image: 'https://images.unsplash.com/photo-1452195100486-9cc805987862?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    slug: 'kit-degustacao-queijos',
+    category: 'Laticínios'
+  },
+  {
+      id: '4',
+      title: 'Mel Orgânico Silvestre',
+      price: 35.50,
+      image: 'https://images.unsplash.com/photo-1587049352846-4a222e784d38?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      slug: 'mel-organico-silvestre',
+      category: 'Mercearia'
+  },
+  {
+      id: '5',
+      title: 'Cachaça Artesanal Envelhecida',
+      price: 65.00,
+      image: 'https://images.unsplash.com/photo-1569529465841-dfecdab7503b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      slug: 'cachaca-artesanal-envelhecida',
+      category: 'Destilados'
+  },
+  {
+      id: '6',
+      title: 'Geleia de Frutas Vermelhas',
+      price: 22.90,
+      image: 'https://images.unsplash.com/photo-1579737976691-1ec851a7051f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      slug: 'geleia-frutas-vermelhas',
+      category: 'Mercearia'
+  }
+];
+
+const categories = [...new Set(products.map(p => p.category))];
+---
+
+<Layout title="Loja - Ouro Fino">
+  <div class="container mx-auto px-4 py-8">
+    <div class="mb-8 text-center">
+      <h1 class="text-4xl font-bold font-serif mb-4">Nossa Loja</h1>
+      <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
+        Descubra os sabores autênticos da nossa produção. Produtos selecionados com carinho para você.
+      </p>
+    </div>
+
+    <div class="flex flex-col lg:flex-row gap-8">
+      <!-- Sidebar de Filtros (Responsivo) -->
+      <aside class="w-full lg:w-64 flex-shrink-0">
+        <div class="lg:sticky lg:top-24 space-y-6">
+          <div>
+            <h3 class="font-semibold text-lg mb-3">Categorias</h3>
+            <ul class="space-y-2">
+              <li>
+                <a href="/shop" class="text-primary font-medium hover:underline">Todos os Produtos</a>
+              </li>
+              {categories.map(category => (
+                <li>
+                  <a href={`/shop?category=${category}`} class="text-muted-foreground hover:text-foreground transition-colors">
+                    {category}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          
+          <div>
+              <h3 class="font-semibold text-lg mb-3">Preço</h3>
+              <div class="flex items-center gap-2">
+                  <input type="range" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer" />
+              </div>
+              <div class="flex justify-between text-sm text-gray-500 mt-1">
+                  <span>R$ 0</span>
+                  <span>R$ 500+</span>
+              </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Grid de Produtos -->
+      <div class="flex-1">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {products.map((product) => (
+            <ProductCard product={product} />
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

@@ -29,32 +29,32 @@ Roadmap agressivo para entrega do MVP em 2 meses, com paralelismo entre Frontend
 - [x] [BE-POC] Gerar e validar assinatura de QR Code (JWT Offline).
 
 ### Semana 2: Backend Core (Payload CMS)
-- [ ] [BE] Configurar Payload CMS + PostgreSQL.
-- [ ] [BE] Criar Collections: Users, Media, Pages (Institucional).
-- [ ] [BE] Criar Collections: Products, Categories (Ecommerce).
-- [ ] [BE] Criar Collections: Events, Tickets (Estância).
+- [x] [BE] Configurar Payload CMS + PostgreSQL.
+- [x] [BE] Criar Collections: Users, Media, Pages (Institucional).
+- [x] [BE] Criar Collections: Products, Categories (Ecommerce).
+- [x] [BE] Criar Collections: Events, Tickets (Estância).
 
 ### Semana 3: Frontend Base & Institucional
-- [ ] [FE] Setup Astro + Tailwind + Framer Motion.
-- [ ] [FE] Implementar Header, Footer e Layout Base.
-- [ ] [FE] Páginas Institucionais (Home, Sobre) consumindo Payload API.
-- [ ] [QA] Testes visuais dos componentes base.
+- [x] [FE] Setup Astro + Tailwind + Framer Motion.
+- [x] [FE] Implementar Header, Footer e Layout Base.
+- [x] [FE] Páginas Institucionais (Home, Sobre) consumindo Payload API.
+- [x] [QA] Testes visuais dos componentes base.
 
 ### Semana 4: Ecommerce - Descoberta e Carrinho
-- [ ] [FE] Página de Listagem de Produtos (PLP) com filtros.
-- [ ] [FE] Página de Detalhe de Produto (PDP) com variações.
-- [ ] [FE] Componente de Carrinho (Slide-over) com persistência local.
-- [ ] [BE] Endpoints de cálculo de frete (mock ou integração real).
+- [x] [FE] Página de Listagem de Produtos (PLP) com filtros.
+- [x] [FE] Página de Detalhe de Produto (PDP) com variações.
+- [x] [FE] Componente de Carrinho (Slide-over) com persistência local.
+- [x] [BE] Endpoints de cálculo de frete (mock ou integração real).
 
 ### Semana 5: Estância - Agendamento
 - [ ] [FE] Interface de Calendário e Seleção de Horários.
 - [ ] [BE] Integrar endpoint de travamento de slots com frontend.
-- [ ] [FE] Fluxo de seleção de ingressos (Adulto/Criança).
+- [ ] [FE] Fluxo de seleção de ingressos.
 - [ ] [DATA] Instrumentar funil de reserva.
 
 ### Semana 6: Checkout & Pagamento
-- [ ] [BE] Integração com Gateway de Pagamento (Pagar.me/Stripe).
-- [ ] [FE] Checkout Page (Dados Pessoais + Pagamento).
+- [ ] [BE] Integração com Gateway de Pagamento, pode ser feita para a pessoa definir a integradora, mas pelo default integra coom a Stripe.
+- [ ] [FE] Checkout Page, tipo One Checkout Page (Dados Pessoais + Pagamento).
 - [ ] [BE] Webhook de processamento de pagamento.
 - [ ] [BE] Worker de geração de ingressos (pós-pagamento).
 

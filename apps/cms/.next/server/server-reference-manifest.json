@@ -1,1 +1,36 @@
-{"node":{"fa7275b75b33a05d8df41f3356e424be724a8a6c":{"workers":{"app/(payload)/page":"38663","app/(payload)/[...slug]/page":"38663"},"layer":{"app/(payload)/page":"rsc","app/(payload)/[...slug]/page":"rsc"}}},"edge":{},"encryptionKey":"1Wo6HztkGcElnxX6cusbDRexdioEZKVU6cUINuCc4So="}
+{
+  "node": {
+    "60f24b2ac09eb93aab513dd7a875f5813f4a388a49": {
+      "workers": {
+        "app/(payload)/admin/[[...segments]]/page": {
+          "moduleId": 682084,
+          "async": false,
+          "exportedName": "$$RSC_SERVER_ACTION_0",
+          "filename": "apps/cms/node_modules/.pnpm/@payloadcms+next@3.76.1_@types+react@19.2.14_graphql@16.12.0_monaco-editor@0.55.1_next@_fbd2a842708322f5b1d1d3b4a5279dfd/node_modules/@payloadcms/next/dist/layouts/Root/index.js"
+        }
+      },
+      "layer": {
+        "app/(payload)/admin/[[...segments]]/page": "rsc"
+      },
+      "filename": "apps/cms/node_modules/.pnpm/@payloadcms+next@3.76.1_@types+react@19.2.14_graphql@16.12.0_monaco-editor@0.55.1_next@_fbd2a842708322f5b1d1d3b4a5279dfd/node_modules/@payloadcms/next/dist/layouts/Root/index.js",
+      "exportedName": "$$RSC_SERVER_ACTION_0"
+    },
+    "40d2b25440a4cf9a82e37cdc7a5c9ee630ec5b0dfb": {
+      "workers": {
+        "app/(payload)/admin/[[...segments]]/page": {
+          "moduleId": 682084,
+          "async": false,
+          "exportedName": "serverFunction",
+          "filename": "apps/cms/src/app/(payload)/actions.ts"
+        }
+      },
+      "layer": {
+        "app/(payload)/admin/[[...segments]]/page": "rsc"
+      },
+      "filename": "apps/cms/src/app/(payload)/actions.ts",
+      "exportedName": "serverFunction"
+    }
+  },
+  "edge": {},
+  "encryptionKey": "qBFteH32FjbPMMz/F/w9SlXMNVkHd2WVUwMcArBbR6g="
+}

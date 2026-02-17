@@ -1,0 +1,14 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero';
+import Features from '../components/Features';
+import ProductShowcase from '../components/ProductShowcase';
+---
+
+<Layout title="Ouro Fino - Bem-vindo">
+	<main class="min-h-screen bg-background text-foreground overflow-hidden">
+		<Hero client:load />
+		<Features client:visible />
+		<ProductShowcase client:visible />
+	</main>
+</Layout>
